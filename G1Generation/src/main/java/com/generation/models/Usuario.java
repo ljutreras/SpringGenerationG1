@@ -1,20 +1,58 @@
 package com.generation.models;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@RestController
+@Entity
+@Table(name="usuarios")
+
 public class Usuario {
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @Size(min=3, max=30) //LIMITA la cantidad de caracteres
     private String nombre;
+
+    @Size(min=3, max=30)
     private String apellido;
-    private int edad;
+
+
+    private Integer edad;
+
+    @NotNull
+    @Size(min=6, max=8)
+    private String passwd;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, int edad) {
+    public Usuario(String nombre, String apellido, Integer edad, String passwd) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
+        this.passwd = passwd;
+    }
+
+    //GETTER & SETTER
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -33,20 +71,12 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public int getEdad() {
+    public Integer getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         this.edad = edad;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", edad=" + edad +
-                '}';
-    }
 }
