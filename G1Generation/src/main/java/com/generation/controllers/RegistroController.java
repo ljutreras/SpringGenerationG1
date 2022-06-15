@@ -1,6 +1,8 @@
 package com.generation.controllers;
 
 import com.generation.models.Usuario;
+import com.generation.services.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,11 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/registro")
 public class RegistroController {
+
+    //Inyeccion de depencias
+    @Autowired
+    UsuarioService usuarioService; //Queremos acceder a los metodos
+
     //ruta para desplegar el JSP
 
     @RequestMapping("")
@@ -57,7 +64,13 @@ public class RegistroController {
 
         }
 
+        //Capturamos el objeto con los atributos llenos
         System.out.println(usuario.getNombre()+" "+ usuario.getApellido()+" "+usuario.getEdad());
+
+        //Enviar el objeto al servicio
+        usuarioService.saveUsuario(usuario); //La variable esta cargada con data, en este caso, hicimos el llamado en la linea 56
+
+
         return "index.jsp";
     }
 }

@@ -32,6 +32,9 @@
             <form:label path="edad">Edad:</form:label>
             <form:input type="number" path="edad"/>                 <!--Nombre del atributo del registro -->
             <br>
+            <form:label path="passwd">Passwd</form:label>
+            <form:input type="password" path="passwd"/>                 <!--Nombre del atributo del registro -->
+            <br>
             <input type="submit" value="Registrar">
         </form:form>
 
